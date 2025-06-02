@@ -1,0 +1,7 @@
+[project]
+name = "crewai-q-and-a-system"
+version = "0.1.0"
+description = "This agent crew will help users to answer there question searching through web also filter explicity and self harming questions"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
