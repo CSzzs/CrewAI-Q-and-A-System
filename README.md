@@ -12,10 +12,9 @@ This agentic system processes user questions through three stages:
 
 ## 🏗️ Architecture
 
-- **FastAPI Backend**: RESTful API for processing questions
+- **FastAPI Backend**: API for processing questions
 - **Streamlit Frontend**: User-friendly web interface
 - **CrewAI Framework**: Orchestrates the multi-agent workflow
-- **Conditional Logic**: Ensures harmful content is filtered before processing
 
 ## 🚀 Setup Instructions
 
