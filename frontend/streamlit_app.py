@@ -15,14 +15,14 @@ st.title("🤖 CrewAI Agentic Q&A System")
 st.markdown("Ask any question and get comprehensive, well-formatted answers!")
 
 # Creating two columns for better layout
-col1, col2 = st.columns([2, 1])
+col1, spacer, col2 = st.columns([3, 0.5, 1])
 
 with col1:
     # input field for user question
     user_question = st.text_area(
         "Enter your question:",
         placeholder="Type your question here....",
-        height=100
+        height=150
     )
     
     # Submit button
