@@ -8,6 +8,7 @@ dependencies = [
     "crewai",
     "crewai-tools",
     "fastapi",
+    "openai>=1.75.0",
     "pydantic",
     "python-dotenv",
     "requests",

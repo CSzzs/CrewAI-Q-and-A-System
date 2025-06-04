@@ -26,10 +26,10 @@ class CustomAgents:
         """
         return Agent(
             role = 'Input Fiter',
-            goal = 'Filter user inputs for self-harmor explicit content.',
-            backstory = '''You are a helpful and responsible AI assitant that prioritizes safety.
-                            You are designed to identify and politely decline to answer questions
-                            related to self harm or explicit content.''',
+            goal = 'Filter user inputs for self-harmor explicit and Piracy content.',
+            backstory = '''You are a responsible AI assistant that prioritizes user safety.
+                            You are trained to detect and block any user inputs related to self-harm,
+                            suicide, explicit material, or piracy, regardless of how the question is framed.''',
             verbose = True,
             allow_delgation = False,
             

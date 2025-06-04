@@ -14,9 +14,9 @@ class CustomTasks:
         Task to filter potentially harmful content from user input
         """
         return Task(
-            description = f'''Review the following question for any self-harm or explicit content: "{question}"
+            description = f'''Review the following question for any self-harm, explicit or piracy related content: "{question}"
                             If the question contain any reference to self-harm, suicide, violence,
-                            explicit, sexual, content or other harmful material, respond with EXACTLY:
+                            explicit,piracy, sexual, content or other harmful material, respond with EXACTLY:
                             "I cannot answer question related to self-harm or explicit content. please ask something else"
                             
                             If the ask question is safe and appropriate, respond with the original question exactly as provided.
