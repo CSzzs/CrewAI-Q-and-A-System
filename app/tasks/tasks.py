@@ -1,5 +1,5 @@
 from crewai import Task
-from agents import CustomAgents
+from app.agents.agents import CustomAgents
 
 class CustomTasks:
     """
@@ -23,7 +23,7 @@ class CustomTasks:
                             
                             Question to review: {question}''',
                             
-            agent = self.agents.filter_agents(),
+            agent = self.agents.filter_agent(),
             expected_output="Either the polite refusal message or the original safe question."
         )
         
