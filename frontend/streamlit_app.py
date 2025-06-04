@@ -58,8 +58,8 @@ with col1:
                 except Exception as e:
                     st.error(f"❌ Unexpected Error: {str(e)}")
     
-    else:
-        st.warning("⚠️ Please enter a question before submitting.")
+        else:
+            st.warning("⚠️ Please enter a question before submitting.")
                 
 
 with col2:
