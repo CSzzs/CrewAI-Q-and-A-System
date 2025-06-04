@@ -26,7 +26,8 @@ with col1:
     )
     
     # Submit button
-    if st.button("🔍 Get Answer", type="primary"):
+    button_clicked = st.button("🔍 Get Answer", type="primary")
+    if button_clicked:
         if user_question.strip():
         # Show Loading spinner
             with st.spinner("Processing Your Question through our AI Agents..."):
