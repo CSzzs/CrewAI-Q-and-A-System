@@ -44,7 +44,7 @@ class CustomTasks:
             expected_output = "A comprehensive asnwer to the user's question based on web scraped data."
         )
         
-    def fromat_answer_agent(self, answer:str):
+    def fromat_answer_task(self, answer:str):
         """
         Task to formatthe answer into a professional, readable format
         """

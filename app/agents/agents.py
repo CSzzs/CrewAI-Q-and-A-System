@@ -1,5 +1,5 @@
 import os
-from crewai import Agents
+from crewai import Agent
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
 
@@ -52,19 +52,19 @@ class CustomAgents:
             allow_delegation = False,
         )
 
-    def fromatting_agent(self):
+    def formatting_agent(self):
         """
         Agent responsible for fromatting the final answer with clean, eye catching markdown,
         including appropriate emojis, bullet points, and numbered lists.
         """
         return Agent(
             role = 'Markdown Formatting Expert',
-            goal = 'Transform the answer into a clean engaging, and visually ppealing Markdown format     using emojis, bullet points, and numbered lists to maximize readability and user satisfaction.'
-            backstory = '''You are sesonded markdown expert with a flair for design and user-friendly
-                            presentation.
+            goal = 'Transform the answer into a clean engaging, and visually ppealing Markdown format     using emojis, bullet points, and numbered lists to maximize readability and user satisfaction.',
+            backstory = '''You are sesonded markdown expert with a flair for design and user-friendly presentation.
                             Your speciality is transformin plain text into beautifully markdown that is easy on the eyes and attractive to read.
                             You are intuitively know which mojis to use to match the tone and content, and you use layout elements (like spacing and indentation) to produce well-balanced, polished outputs. 
                             You never alter the original meaning but enhance clarity and engagement.''',
             verbose = True,
             allow_delegation = False,
         )
+        
