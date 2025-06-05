@@ -1,4 +1,5 @@
 import os
+import logging
 from crewai import Agent
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
@@ -6,24 +7,33 @@ from dotenv import load_dotenv
 # Load environemnt varibales
 load_dotenv()
 
+# Create logger for this module
+logger = logging.getLogger(__name__)
+
 class CustomAgents:
     """Defining custom agents for the crew
     """
     
     # Initializing LLM configuration
     def __init__(self):
+        logger.info("Intializing CustomAgents...")
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
         self.serper_api_key = os.getenv("SERPER_API_KEY")
         
         if not self.openai_api_key:
+            logger.error("OPENAI_API_KEY not found in environment variables")
             raise ValueError("OPENAI_API_KEY not found in environment variables")
         if not self.serper_api_key:
+            logger.error("SERPER_API_KEY not found in environment variables")
             raise ValueError("SERPER_API_KEY not found in environment variables")
 
+        logger.info("CustomAgents intialized successfully")
+        
     def filter_agent(self):
         """
         Agent responsible for filtering harmful contents
         """
+        logger.debug("Creating Filter agent...")
         return Agent(
             role = 'Input Fiter',
             goal = 'Filter user inputs for self-harmor explicit and Piracy content.',
@@ -39,6 +49,7 @@ class CustomAgents:
         """
         Agent responsible for gathering information from the web
         """
+        logger.debug("Creating web scraper agent...")
         # Initialize SerperDevTool with API key
         serper_tool = SerperDevTool(api_key=self.serper_api_key)
         
@@ -60,6 +71,7 @@ class CustomAgents:
         Agent responsible for fromatting the final answer with clean, eye catching markdown,
         including appropriate emojis, bullet points, and numbered lists.
         """
+        logger.debug("Creating formatting agent...")
         return Agent(
             role = 'Markdown Formatting Expert',
             goal = 'Transform factual answers into clean, engaging, and visually appealing Markdown format using emojis, bullet points, and numbered lists to maximize readability.',
