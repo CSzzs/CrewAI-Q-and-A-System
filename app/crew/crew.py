@@ -7,21 +7,21 @@ from dotenv import load_dotenv
 # Loading environment variables
 load_dotenv()
 
-def get_crew_result(question:str) -> str:
+def get_crew_result(question: str) -> str:
     """
-    Main function that orchestrate the entire CrewAI process with conditionl logic
+    Main function that orchestrates the entire CrewAI process with conditional logic
     """
     try:
         # Initializing agents and tasks
         agents = CustomAgents()
         tasks = CustomTasks()
         
-        # Runing filter task to check for harmful content
-        print(f"🛡️ Filtering question:{question}")
+        # Running filter task to check for harmful content
+        print(f"🛡️ Filtering question: {question}")
         
         filter_task = tasks.filter_task(question)
         
-        #Create a crew for filtering
+        # Create a crew for filtering
         filter_crew = Crew(
             agents=[agents.filter_agent()],
             tasks=[filter_task],
@@ -29,26 +29,26 @@ def get_crew_result(question:str) -> str:
             verbose=True
         )
         
-        #Executing the filter task
+        # Executing the filter task
         filter_result = filter_crew.kickoff()
         filter_output = str(filter_result).strip()
         
         print(f"🔍 Filter result: {filter_output}")
         
-        #checking the content was flagges as harmful
-        refusal_messge = "I cannot answer questions related to self-harm or explicit content. Please ask something else."
+        # Checking if the content was flagged as harmful
+        refusal_message = "I cannot answer questions related to self-harm or explicit content. Please ask something else."
         
-        if refusal_messge in filter_output:
+        if refusal_message in filter_output:
             print("⚠️ Question flagged as potentially harmful - returning refusal message")
-            return refusal_messge
+            return refusal_message
         
-        # if sage, proceed with web scraping and formatting
-        print("✅ Question Passed the safety filter - Proceeding to web search and formatting")
+        # If safe, proceed with web scraping and formatting
+        print("✅ Question passed the safety filter - Proceeding to web search and formatting")
         
-        #Task for web scraping and formatting
+        # Task for web scraping
         web_scrape_task = tasks.web_scrape_task(question)
         
-        #Create a crew for webscraping
+        # Create a crew for web scraping
         web_crew = Crew(
             agents=[agents.web_scrape_agent()],
             tasks=[web_scrape_task],
@@ -56,15 +56,14 @@ def get_crew_result(question:str) -> str:
             verbose=True
         )
         
-        # Excuting the web scraping
+        # Executing the web scraping
         web_result = web_crew.kickoff()
-        web_output = str (web_result).strip()
+        web_output = str(web_result).strip()
         
         print(f"🌐 Web scraping completed")
         
-        #formatting and organizing the answer
-        
-        format_task = tasks.fromat_answer_task(web_output)
+        # Formatting and organizing the answer
+        format_task = tasks.format_answer_task(web_output)  # Fixed typo here
         
         # Create crew for formatting
         format_crew = Crew(
@@ -74,7 +73,7 @@ def get_crew_result(question:str) -> str:
             verbose=True
         )
         
-        # Execute Formatting
+        # Execute formatting
         final_result = format_crew.kickoff()
         formatted_output = str(final_result).strip()
         
@@ -83,6 +82,6 @@ def get_crew_result(question:str) -> str:
         return formatted_output
     
     except Exception as e:
-        error_message = f"An error occured while processing your request: {str(e)}"
+        error_message = f"An error occurred while processing your request: {str(e)}"
         print(f"❌ Error: {error_message}")
         return error_message
