@@ -22,7 +22,7 @@ with col1:
     user_question = st.text_area(
         "Enter your question:",
         placeholder="Type your question here....",
-        height=150
+        height=100
     )
     
     # Submit button
