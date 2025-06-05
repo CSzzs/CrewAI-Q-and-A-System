@@ -44,10 +44,13 @@ class CustomAgents:
         
         return Agent(
             role = 'Information Gatherer',
-            goal = 'Web scrape information using SerperDevTool to answer user question comprehensively.',
-            backstory = '''You are an expert at extracting relevent infromation from the web
-                            to anwer user queries comprehensively. You use reliable source and
-                            provide accutrate, most up-to-date information.''',
+            goal = 'Use SerperDevTool to search the web and provide direct, factual answers to user questions.',
+            backstory = '''You are an expert information gatherer who uses web search to find current, 
+                        reliable data and provides direct answers to user questions. You extract specific 
+                        facts, statistics, rankings, and examples from your search results. You never 
+                        explain your search methodology - you simply provide the factual answer the 
+                        user is looking for. You focus on current, accurate information from trusted sources.''',
+            tools=[serper_tool],
             verbose = True,
             allow_delegation = False,
         )
@@ -59,11 +62,13 @@ class CustomAgents:
         """
         return Agent(
             role = 'Markdown Formatting Expert',
-            goal = 'Transform the answer into a clean engaging, and visually ppealing Markdown format     using emojis, bullet points, and numbered lists to maximize readability and user satisfaction.',
-            backstory = '''You are sesonded markdown expert with a flair for design and user-friendly presentation.
-                            Your speciality is transformin plain text into beautifully markdown that is easy on the eyes and attractive to read.
-                            You are intuitively know which mojis to use to match the tone and content, and you use layout elements (like spacing and indentation) to produce well-balanced, polished outputs. 
-                            You never alter the original meaning but enhance clarity and engagement.''',
+            goal = 'Transform factual answers into clean, engaging, and visually appealing Markdown format using emojis, bullet points, and numbered lists to maximize readability.',
+            backstory = '''You are a seasoned markdown expert with a flair for design and user-friendly presentation.
+                        Your specialty is transforming factual content into beautifully formatted markdown that is 
+                        easy on the eyes and attractive to read. You preserve all original factual information 
+                        while enhancing clarity and engagement through proper formatting, emojis, and layout. 
+                        You never alter facts or turn content into methodology descriptions - you only improve 
+                        the visual presentation of existing information.''',
             verbose = True,
             allow_delegation = False,
         )
