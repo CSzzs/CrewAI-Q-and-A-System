@@ -1,5 +1,9 @@
+import logging
 from crewai import Task
 from app.agents.agents import CustomAgents
+
+# Create logger for this module
+logger = logging.getLogger(__name__)
 
 class CustomTasks:
     """
@@ -7,12 +11,14 @@ class CustomTasks:
     """
     
     def __init__(self):
+        logger.debug("initializing CustomTasks...")
         self.agents = CustomAgents()
         
     def filter_task(self, question:str):
         """
         Task to filter potentially harmful content from user input
         """
+        logger.debug(f"Creating filter task for question: {question[:50]}...")
         return Task(
             description = f'''Review the following question for any self-harm, explicit or piracy related content: "{question}"
                             If the question contain any reference to self-harm, suicide, violence,
@@ -31,6 +37,7 @@ class CustomTasks:
         """
         Task to gather comprehensive information from the web
         """
+        logger.debug(f"Creating web scraping task for question: {question[:50]}...")
         return Task(
             description = f'''Search the web using SerperDevTool to find current, reliable information 
                            that directly answers this question: "{question}"
@@ -57,6 +64,7 @@ class CustomTasks:
         """
         Task to formatthe answer into a professional, readable format
         """
+        logger.debug("Creating format answer task...")
         return Task(
             description=f'''Transform the following factual answer into clean, visually appealing Markdown format.
                            
